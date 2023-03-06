@@ -47,7 +47,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return String.format("%03d | %-30s | %10d | %4d | %b | %-30s%n", id, nombre, precio, existencia, disponible, categoria);
+        return String.format("%04d | %-30s | %10f | %4d | %b | %-30s%n", id, nombre, precio, existencia, disponible, categoria);
     }
 
     public Integer getId() {

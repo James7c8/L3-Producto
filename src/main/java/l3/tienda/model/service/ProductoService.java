@@ -47,4 +47,6 @@ public class ProductoService {
         productoDAO.deleteById(id);
     }
 
+    @Transactional
+    public void eliminarTodo() {productoDAO.deleteAll();}
 }
