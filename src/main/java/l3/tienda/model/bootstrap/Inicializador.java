@@ -16,7 +16,6 @@ public class Inicializador implements CommandLineRunner {
         this.productoService = productoService;
     }
 
-
     @Override
     public void run(String... args) throws Exception {
         // Se crean unos productos para tener algo en la BD.
@@ -25,5 +24,10 @@ public class Inicializador implements CommandLineRunner {
 
         // En comparación con producto1 este se implementa en una sola linea para ahorrar espacio.
         productoService.agregarProducto(new Producto("banano", 500, 70, true, "frutas y verduras"));
+
+        productoService.buscarProductosTodos().forEach(producto -> {
+            System.out.println("Producto: " + producto.getNombre());
+            System.out.println("Precio: " + producto.getPrecio());
+        });
     }
 }
