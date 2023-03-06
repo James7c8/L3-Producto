@@ -1,6 +1,7 @@
 package l3.tienda.model.bootstrap;
 
 import l3.tienda.model.entity.Producto;
+import l3.tienda.model.service.ProductoCRUD;
 import l3.tienda.model.service.ProductoService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -14,10 +15,13 @@ public class Inicializador implements CommandLineRunner {
     // Permite que la clase Inicializador puede acceder y utilizar los métodos de ProductoService.
     // `final` significa que el variable productoService solo puede asignarse una vez, lo que ocurre en el constructor.
     private final ProductoService productoService;
+    private final ProductoCRUD productoCRUD;
 
-    public Inicializador(ProductoService productoService) {
+    public Inicializador(ProductoService productoService, ProductoCRUD productoCRUD) {
         this.productoService = productoService;
+        this.productoCRUD = productoCRUD;
     }
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -40,6 +44,6 @@ public class Inicializador implements CommandLineRunner {
 //        });
 
         List<Producto> listaProductos = productoService.buscarProductosTodos();
-        productoService.mostrarTodosProductos(listaProductos);
+        productoCRUD.mostrarTodosProductos(listaProductos);
     }
 }

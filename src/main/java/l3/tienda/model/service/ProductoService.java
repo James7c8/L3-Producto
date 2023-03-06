@@ -50,11 +50,4 @@ public class ProductoService {
     @Transactional
     public void eliminarTodo() {productoDAO.deleteAll();}
 
-    public void mostrarTodosProductos(List<Producto> productos) {
-        System.out.println("--------------------------------------------------------------------------------------------------------");
-        System.out.println("id   | nombre                         |       precio |exist.|  disponible   | categoria                   ");
-        System.out.println("--------------------------------------------------------------------------------------------------------");
-        for(Producto p : productos)
-            System.out.println(p.toString());
-    }
 }
