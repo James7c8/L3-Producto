@@ -3,6 +3,7 @@ package l3.tienda.model.bootstrap;
 import l3.tienda.model.entity.Producto;
 import l3.tienda.model.service.ProductoCRUD;
 import l3.tienda.model.service.ProductoService;
+import l3.tienda.utils.Sc;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -40,9 +41,40 @@ public class Inicializador implements CommandLineRunner {
         productoService.agregarProducto(new Producto("dandelion and burdock", 4500, 0, false, "bebidas"));
 
         List<Producto> listaProductos = productoService.buscarProductosTodos();
-//        productoCRUD.mostrarTodosProductos(listaProductos);
-//        productoCRUD.mostrarProducto(producto1);
-        productoCRUD.modificarProducto(producto1);
-        productoCRUD.mostrarProducto(producto1);
+
+        // Pide que el usuario elige lo que quiere hacer.
+        int opcion = productoCRUD.elegirMenu();
+
+        // Un switch para ejecutar el CRUD que elija el usuario.
+        boolean salir = false;
+        while (!salir) {
+            switch (opcion) {
+                case 1:
+                    listaProductos.add(productoCRUD.agregarProducto());
+                    opcion = productoCRUD.elegirMenu();
+                    break;
+
+                case 2:
+                    productoCRUD.mostrarTodosProductos(listaProductos);
+                    opcion = productoCRUD.elegirMenu();
+                    break;
+
+                case 3:
+                    Integer modificarId = Sc.leerEntero("Digite el código del producto que quiere modificar");
+                    productoCRUD.modificarProducto(productoService.buscarProductoPorId(modificarId));
+                    opcion = productoCRUD.elegirMenu();
+                    break;
+
+                case 4:
+                    Integer eliminarId = Sc.leerEntero("Digite el código del producto que quiere eliminar");
+                    productoCRUD.eliminarProducto(listaProductos, eliminarId);
+                    opcion = productoCRUD.elegirMenu();
+                    break;
+
+                case 5:
+                    System.out.println("PROGRAMA SE TERMINÓ CON ÉXITO");
+                    break;
+            }
+        }
     }
 }

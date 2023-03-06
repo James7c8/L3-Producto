@@ -48,7 +48,7 @@ public class Producto {
     @Override
     public String toString() {
         String disponibleSiNo = (disponible ? "sí disponible" : "no disponible");
-        return String.format("%04d | %-30s | %12.2f | %4d | %13s | %-30s%n", id, nombre, precio, existencia, disponibleSiNo, categoria);
+        return String.format("%d | %-30s | %12.2f | %4d | %13s | %-30s", id, nombre, precio, existencia, disponibleSiNo, categoria);
     }
 
     public Integer getId() {
