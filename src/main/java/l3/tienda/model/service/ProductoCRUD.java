@@ -60,6 +60,7 @@ public class ProductoCRUD {
                         else if (disponibilidad == 2) disponible = false;
                         else System.out.println("Opción no válida!");
 
+                        producto.setDisponible(disponible);
                         break;
                     case 5:
                         String categoria = Sc.leerTexto("Ingrese la nueva categoría\n>");

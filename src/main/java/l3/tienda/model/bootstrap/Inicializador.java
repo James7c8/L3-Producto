@@ -40,7 +40,9 @@ public class Inicializador implements CommandLineRunner {
         productoService.agregarProducto(new Producto("dandelion and burdock", 4500, 0, false, "bebidas"));
 
         List<Producto> listaProductos = productoService.buscarProductosTodos();
-        productoCRUD.mostrarTodosProductos(listaProductos);
+//        productoCRUD.mostrarTodosProductos(listaProductos);
+//        productoCRUD.mostrarProducto(producto1);
+        productoCRUD.modificarProducto(producto1);
         productoCRUD.mostrarProducto(producto1);
     }
 }
