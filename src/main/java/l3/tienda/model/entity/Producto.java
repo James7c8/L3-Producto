@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 // Indica a JPA que esta clase es una entidad que se puede aplicar a una tabla de una BD.
 @Entity
-@Table(name = "productos")
+@Table(name = "productos") // TODO change class name to lower class in order to abide by database table name standards.
 public class Producto {
 
     // Se usa para especificar la clave primaria.
