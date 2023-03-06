@@ -1,6 +1,5 @@
 package l3.tienda.model.bootstrap;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import l3.tienda.model.entity.Producto;
 import l3.tienda.model.service.ProductoCRUD;
 import l3.tienda.model.service.ProductoService;
@@ -24,7 +23,6 @@ public class Inicializador implements CommandLineRunner {
         this.productoCRUD = productoCRUD;
     }
 
-
     @Override
     public void run(String... args) throws Exception {
         // Debido a que se crean los registros acá y no en la DB (para la práctica), hay que eliminarlo toddo al
@@ -43,13 +41,14 @@ public class Inicializador implements CommandLineRunner {
 
         List<Producto> listaProductos = productoService.buscarProductosTodos();
 
-        // Pide que el usuario elige lo que quiere hacer.
+        // Pide que el usuario elige lo que quiere hacer de un menu de opciones.
         int opcion = productoCRUD.elegirMenu();
 
         // Un switch para ejecutar el CRUD que elija el usuario.
         boolean salir = false;
         while (!salir) {
             switch (opcion) {
+
                 case 1:
                     productoCRUD.agregarProducto();
                     opcion = productoCRUD.elegirMenu();
@@ -63,20 +62,18 @@ public class Inicializador implements CommandLineRunner {
                     break;
 
                 case 3:
-                    listaProductos = productoService.buscarProductosTodos();
                     try {
-                        Integer modificarId = Sc.leerEntero("Digite el código del producto que quiere modificar");
+                        Integer modificarId = Sc.leerEntero("\nDigite el código del producto que quiere modificar");
                         productoCRUD.modificarProducto(productoService.buscarProductoPorId(modificarId));
                     } catch (Exception e) {
-                        System.out.println("El código no corresponde a ningún producto");
+                        System.out.println("\nEl código digitado no corresponde a ningún producto");
                     }
                     opcion = productoCRUD.elegirMenu();
                     break;
 
                 case 4:
-                    listaProductos = productoService.buscarProductosTodos();
-                    Integer eliminarId = Sc.leerEntero("Digite el código del producto que quiere eliminar");
-                    productoCRUD.eliminarProducto(listaProductos, eliminarId);
+                    Integer eliminarId = Sc.leerEntero("\nDigite el código del producto que quiere eliminar");
+                    productoCRUD.eliminarProducto(eliminarId);
                     opcion = productoCRUD.elegirMenu();
                     break;
 
