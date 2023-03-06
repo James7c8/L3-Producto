@@ -18,8 +18,8 @@ public class ProductoCRUD {
 
 
     public void mostrarTodosProductos(List<Producto> productos) {
-        System.out.println("--------------------------------------------------------------------------------------------------------");
-        System.out.println("id   | nombre                         |       precio |exist.|  disponible   | categoria                   ");
+        System.out.println("\n--------------------------------------------------------------------------------------------------------");
+        System.out.println("id   | nombre                         |       precio |exist.|  disponible   | categoría                   ");
         System.out.println("--------------------------------------------------------------------------------------------------------");
         for(Producto p : productos)
             System.out.println(p.toString());
@@ -27,8 +27,8 @@ public class ProductoCRUD {
     }
 
     public void mostrarProducto(Producto producto) {
-        System.out.println("--------------------------------------------------------------------------------------------------------");
-        System.out.println("id   | nombre                         |       precio |exist.|  disponible   | categoria                   ");
+        System.out.println("\n--------------------------------------------------------------------------------------------------------");
+        System.out.println("id   | nombre                         |       precio |exist.|  disponible   | categoría                   ");
         System.out.println("--------------------------------------------------------------------------------------------------------");
         System.out.println(producto.toString());
         System.out.println("--------------------------------------------------------------------------------------------------------");
@@ -45,6 +45,7 @@ public class ProductoCRUD {
 
         String categoria = Sc.leerTexto("Categoria");
         productoService.agregarProducto(new Producto(nombre, precio, existencia, disponible, categoria));
+        System.out.println("\nProducto se agregó con éxito");
     }
 
     public Producto modificarProducto(Producto producto) {
@@ -53,7 +54,8 @@ public class ProductoCRUD {
             try{
                 mostrarProducto(producto);
                 System.out.println("Digite el campo que quiere modificar");
-                opcion = Sc.leerEntero("\n1 - Nombre\n2 - Precio\n3 - Existencia\n4 - Disponibilidad\n5 - Categoría\n6 - SALIR");
+                opcion = Sc.leerEntero("\n1 - Nombre\n2 - Precio\n3 - Existencia\n4 - Disponibilidad\n" +
+                        "5 - Categoría\n6 - Volver al menú principal");
 
                 switch(opcion) {
                     case 1:
@@ -101,6 +103,7 @@ public class ProductoCRUD {
         for (int i = 0; i < listaProductos.size(); i++) {
             if (productoId == listaProductos.get(i).getId()) {
                 productoService.eliminarProducto(productoId);
+                System.out.println("Producto se eliminó con éxito");
                 found = true;
                 break;
             }

@@ -1,5 +1,6 @@
 package l3.tienda.model.bootstrap;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import l3.tienda.model.entity.Producto;
 import l3.tienda.model.service.ProductoCRUD;
 import l3.tienda.model.service.ProductoService;
@@ -63,8 +64,12 @@ public class Inicializador implements CommandLineRunner {
 
                 case 3:
                     listaProductos = productoService.buscarProductosTodos();
-                    Integer modificarId = Sc.leerEntero("Digite el código del producto que quiere modificar");
-                    productoCRUD.modificarProducto(productoService.buscarProductoPorId(modificarId));
+                    try {
+                        Integer modificarId = Sc.leerEntero("Digite el código del producto que quiere modificar");
+                        productoCRUD.modificarProducto(productoService.buscarProductoPorId(modificarId));
+                    } catch (Exception e) {
+                        System.out.println("El código no corresponde a ningún producto");
+                    }
                     opcion = productoCRUD.elegirMenu();
                     break;
 
