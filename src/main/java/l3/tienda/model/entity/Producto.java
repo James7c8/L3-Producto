@@ -9,7 +9,7 @@ public class Producto {
 
     // Se usa para especificar la clave primaria.
     @Id
-    // Se usa para decidir cómo se genera la clave primaria. IDENTITY significa que se la creará la BD.
+    // Se usa para decidir cómo se genera la clave primaria.
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
@@ -47,7 +47,8 @@ public class Producto {
 
     @Override
     public String toString() {
-        return String.format("%04d | %-30s | %10f | %4d | %b | %-30s%n", id, nombre, precio, existencia, disponible, categoria);
+        String disponibleSiNo = (disponible ? "sí disponible" : "no disponible");
+        return String.format("%04d | %-30s | %12.2f | %4d | %13s | %-30s%n", id, nombre, precio, existencia, disponibleSiNo, categoria);
     }
 
     public Integer getId() {

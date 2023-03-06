@@ -5,6 +5,8 @@ import l3.tienda.model.service.ProductoService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 // CommandLineRunner es una interfaz que proporciona el único método `run(String... args)`.
 public class Inicializador implements CommandLineRunner {
@@ -33,8 +35,11 @@ public class Inicializador implements CommandLineRunner {
         productoService.agregarProducto(new Producto("coca-cola", 3500, 12, true, "bebidas"));
         productoService.agregarProducto(new Producto("dandelion and burdock", 4500, 0, false, "bebidas"));
 
-        productoService.buscarProductosTodos().forEach(producto -> {
-            System.out.println(producto.toString());
-        });
+//        productoService.buscarProductosTodos().forEach(producto -> {
+//            System.out.println(producto.toString());
+//        });
+
+        List<Producto> listaProductos = productoService.buscarProductosTodos();
+        productoService.mostrarTodosProductos(listaProductos);
     }
 }
