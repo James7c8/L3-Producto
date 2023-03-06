@@ -23,6 +23,7 @@ public class ProductoCRUD {
         System.out.println("--------------------------------------------------------------------------------------------------------");
         for(Producto p : productos)
             System.out.println(p.toString());
+        System.out.println("--------------------------------------------------------------------------------------------------------");
     }
 
     public void mostrarProducto(Producto producto) {
@@ -30,9 +31,10 @@ public class ProductoCRUD {
         System.out.println("id   | nombre                         |       precio |exist.|  disponible   | categoria                   ");
         System.out.println("--------------------------------------------------------------------------------------------------------");
         System.out.println(producto.toString());
+        System.out.println("--------------------------------------------------------------------------------------------------------");
     }
 
-    public Producto agregarProducto() {
+    public void agregarProducto() {
         System.out.println("\nIngrese la siguente información para un nuevo producto");
         String nombre = Sc.leerTexto("Nombre");
         double precio = Sc.leerReal("Precio");
@@ -42,8 +44,7 @@ public class ProductoCRUD {
         boolean disponible = (disponibilidad == 1) ? true : false;
 
         String categoria = Sc.leerTexto("Categoria");
-
-        return (new Producto(nombre, precio, existencia, disponible, categoria));
+        productoService.agregarProducto(new Producto(nombre, precio, existencia, disponible, categoria));
     }
 
     public Producto modificarProducto(Producto producto) {
@@ -99,7 +100,7 @@ public class ProductoCRUD {
         boolean found = false;
         for (int i = 0; i < listaProductos.size(); i++) {
             if (productoId == listaProductos.get(i).getId()) {
-                listaProductos.remove(i);
+                productoService.eliminarProducto(productoId);
                 found = true;
                 break;
             }

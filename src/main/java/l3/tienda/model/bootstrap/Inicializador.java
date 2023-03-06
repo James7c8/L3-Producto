@@ -50,22 +50,26 @@ public class Inicializador implements CommandLineRunner {
         while (!salir) {
             switch (opcion) {
                 case 1:
-                    listaProductos.add(productoCRUD.agregarProducto());
+                    productoCRUD.agregarProducto();
                     opcion = productoCRUD.elegirMenu();
                     break;
 
                 case 2:
+                    // Para actualizar la lista si se agrega o se elimina un producto en el mismo while loop.
+                    listaProductos = productoService.buscarProductosTodos();
                     productoCRUD.mostrarTodosProductos(listaProductos);
                     opcion = productoCRUD.elegirMenu();
                     break;
 
                 case 3:
+                    listaProductos = productoService.buscarProductosTodos();
                     Integer modificarId = Sc.leerEntero("Digite el código del producto que quiere modificar");
                     productoCRUD.modificarProducto(productoService.buscarProductoPorId(modificarId));
                     opcion = productoCRUD.elegirMenu();
                     break;
 
                 case 4:
+                    listaProductos = productoService.buscarProductosTodos();
                     Integer eliminarId = Sc.leerEntero("Digite el código del producto que quiere eliminar");
                     productoCRUD.eliminarProducto(listaProductos, eliminarId);
                     opcion = productoCRUD.elegirMenu();
